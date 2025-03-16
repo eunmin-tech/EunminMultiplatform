@@ -1,0 +1,49 @@
+package io.eunmin.multiplatform.convention
+
+import com.android.build.api.dsl.LibraryExtension
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getByType
+import org.jetbrains.compose.ComposeExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+
+internal fun Project.configureMultiplatformCompose() {
+    with(pluginManager) {
+        apply("org.jetbrains.compose")
+        apply("org.jetbrains.kotlin.plugin.compose")
+    }
+
+    extensions.configure<LibraryExtension> {
+        buildFeatures.compose = true
+    }
+
+    val compose = extensions.getByType<ComposeExtension>().dependencies
+
+    extensions.configure<KotlinMultiplatformExtension> {
+        sourceSets.androidMain.dependencies {
+            implementation(compose.preview)
+            implementation("androidx.window:window:1.3.0")
+        }
+
+        sourceSets.commonMain.dependencies {
+            implementation(compose.ui)
+            implementation(compose.runtime)
+            implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
+            implementation(compose.material3AdaptiveNavigationSuite)
+            implementation(compose.foundation)
+            implementation(compose.animationGraphics)
+            implementation(libs.findBundle("coil").get())
+            implementation(libs.findBundle("compose-adaptive").get())
+            if (!name.contains("design")) {
+                implementation(project(":shared:design"))
+            }
+        }
+    }
+
+    dependencies {
+        "debugImplementation"(compose.uiTooling)
+    }
+
+}
