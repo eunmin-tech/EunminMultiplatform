@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.map
 internal class PokemonRepositoryImpl(
     private val remoteDataSource: PokemonRemoteDataSource
 ): PokemonRepository {
-    override suspend fun getPokemons(page: Int, size: Int): Flow<PagingData<PokemonSummary>> =
+    override fun getPokemons(size: Int): Flow<PagingData<PokemonSummary>> =
         Pager(
             config = PagingConfig(pageSize = size),
             pagingSourceFactory = { PokemonSummaryPagingSource(remoteDataSource) }

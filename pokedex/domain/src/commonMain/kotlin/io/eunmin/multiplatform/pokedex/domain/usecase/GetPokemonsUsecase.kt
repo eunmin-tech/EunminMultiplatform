@@ -5,5 +5,5 @@ import io.eunmin.multiplatform.pokedex.domain.repository.PokemonRepository
 class GetPokemonsUsecase(
     private val repository: PokemonRepository
 ) {
-    suspend operator fun invoke() = repository.getPokemons()
+    operator fun invoke(size: Int) = repository.getPokemons(size)
 }
