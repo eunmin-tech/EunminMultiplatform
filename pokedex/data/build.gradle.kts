@@ -5,6 +5,7 @@ plugins {
 
 kotlin {
     sourceSets.commonMain.dependencies {
+        implementation(projects.base.data)
         implementation(projects.pokedex.domain)
         implementation(projects.shared.dataResource)
 

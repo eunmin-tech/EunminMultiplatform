@@ -10,12 +10,16 @@ import io.ktor.client.request.parameter
 internal class PokemonApi(
     private val client: HttpClient
 ) {
+    companion object {
+        private const val BASE_URL = "https://pokeapi.co/api/v2/pokemon"
+    }
+
     suspend fun getPokemons(page: Int, size: Int): NamedApiResourceList =
-        client.get("https://pokeapi.co/api/v2/pokemon") {
+        client.get(BASE_URL) {
             parameter("offset", (page - 1) * size)
             parameter("limit", size)
         }.body()
 
     suspend fun getPokemonDetail(id: Int): PokemonResponse =
-        client.get("https://pokeapi.co/api/v2/pokemon/$id").body()
+        client.get("$BASE_URL/$id").body()
 }

@@ -1,12 +1,13 @@
 plugins {
-    id("eunmin.multiplatform.library")
-    id("eunmin.compose")
+    id("eunmin.compose.library")
     id("eunmin.compose.viewmodel")
+    id("eunmin.koin")
 }
 
 kotlin {
     sourceSets.commonMain.dependencies {
+        implementation(projects.base.feature)
         implementation(projects.pokedex.domain)
-        implementation(libs.paging.compose)
+        implementation(libs.paging.compose.common)
     }
 }

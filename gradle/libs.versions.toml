@@ -29,7 +29,7 @@ ktor = "3.0.3"
 koin = "4.0.2"
 room = "2.7.0-rc02"
 sqlite = "2.5.0-rc02"
-paging = "3.3.6"
+paging = "3.3.0-alpha02-0.5.1"
 
 [libraries]
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -77,9 +77,8 @@ room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
 
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 
-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
-paging-common = { module = "androidx.paging:paging-common", version.ref = "paging" }
-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
+paging-compose-common = { module = "app.cash.paging:paging-compose-common", version.ref = "paging" }
+paging-common = { module = "app.cash.paging:paging-common", version.ref = "paging" }
 
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }

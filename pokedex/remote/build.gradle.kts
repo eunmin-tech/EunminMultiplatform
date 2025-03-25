@@ -7,7 +7,5 @@ plugins {
 kotlin {
     sourceSets.commonMain.dependencies {
         implementation(projects.pokedex.data)
-
-        implementation(libs.paging.runtime)
     }
 }
