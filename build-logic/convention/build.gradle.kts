@@ -21,9 +21,13 @@ gradlePlugin {
             implementationClass = "MultiplatformLibraryConvention"
         }
 
-        register("Compose") {
-            id = "eunmin.compose"
-            implementationClass = "ComposeConvention"
+        register("ComposeApplication") {
+            id = "eunmin.compose.application"
+            implementationClass = "ComposeMultiplatformApplicationConvention"
+        }
+        register("ComposeLibrary") {
+            id = "eunmin.compose.library"
+            implementationClass = "ComposeMultiplatformLibraryConvention"
         }
         register("ComposeNavigation") {
             id = "eunmin.compose.navigation"

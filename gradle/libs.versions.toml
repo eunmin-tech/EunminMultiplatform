@@ -23,13 +23,14 @@ androidx-constraintlayout = "2.2.1"
 androidx-core-ktx = "1.15.0"
 
 coil = "3.1.0"
+palette = "3.1.0"
 
 napier = "2.7.1"
 ktor = "3.0.3"
 koin = "4.0.2"
 room = "2.7.0-rc02"
 sqlite = "2.5.0-rc02"
-paging = "3.3.6"
+paging = "3.3.0-alpha02-0.5.1"
 
 [libraries]
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -56,6 +57,10 @@ compose-material3-adaptive-navigation = { module = "org.jetbrains.compose.materi
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
 
+palette = { module = "com.kmpalette:kmpalette-core", version.ref = "palette" }
+palette-base64 = { module = "com.kmpalette:extensions-base64", version.ref = "palette" }
+palette-network = { module = "com.kmpalette:extensions-network", version.ref = "palette" }
+
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
@@ -77,9 +82,8 @@ room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
 
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 
-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
-paging-common = { module = "androidx.paging:paging-common", version.ref = "paging" }
-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
+paging-compose-common = { module = "app.cash.paging:paging-compose-common", version.ref = "paging" }
+paging-common = { module = "app.cash.paging:paging-common", version.ref = "paging" }
 
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }

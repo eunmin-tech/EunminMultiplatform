@@ -1,0 +1,6 @@
+package io.eunmin.multiplatform.design.extensions
+
+import coil3.request.ImageRequest
+import coil3.request.allowHardware
+
+actual fun ImageRequest.Builder.androidAllowHardware(b: Boolean): ImageRequest.Builder = allowHardware(b)

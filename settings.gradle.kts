@@ -31,17 +31,9 @@ dependencyResolutionManagement {
 
 include(
     ":common",
+    ":base:feature", ":base:data",
 
     ":shared:design", ":shared:data-resource",
+
+    ":pokedex:composeApp", ":pokedex:feature", ":pokedex:domain", ":pokedex:data", ":pokedex:remote"
 )
-
-//addProjectModules("pokedex")
-//addProjectModules("portfolio")
-
-val modules = listOf(
-    ":androidApp", ":feature", ":domain", ":data", ":local", ":remote", ":resources"
-)
-
-fun addProjectModules(name: String) {
-    include(modules.map { ":$name:$it" }.onEach { println(it) })
-}

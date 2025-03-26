@@ -1,5 +1,6 @@
 package io.eunmin.multiplatform.convention
 
+import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -8,14 +9,24 @@ import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.compose.ComposeExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
+internal fun Project.configureApplicationCompose() {
+    configureMultiplatformCompose()
+    extensions.configure<ApplicationExtension> {
+        buildFeatures.compose = true
+    }
+}
+
+internal fun Project.configureLibraryCompose() {
+    configureMultiplatformCompose()
+    extensions.configure<LibraryExtension> {
+        buildFeatures.compose = true
+    }
+}
+
 internal fun Project.configureMultiplatformCompose() {
     with(pluginManager) {
         apply("org.jetbrains.compose")
         apply("org.jetbrains.kotlin.plugin.compose")
-    }
-
-    extensions.configure<LibraryExtension> {
-        buildFeatures.compose = true
     }
 
     val compose = extensions.getByType<ComposeExtension>().dependencies
@@ -36,6 +47,9 @@ internal fun Project.configureMultiplatformCompose() {
             implementation(compose.animationGraphics)
             implementation(libs.findBundle("coil").get())
             implementation(libs.findBundle("compose-adaptive").get())
+            implementation(libs.findLibrary("palette").get())
+            implementation(libs.findLibrary("palette-base64").get())
+            implementation(libs.findLibrary("palette-network").get())
             if (!name.contains("design")) {
                 implementation(project(":shared:design"))
             }
