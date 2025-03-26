@@ -1,6 +1,7 @@
 plugins {
     id("eunmin.compose.library")
     id("eunmin.compose.viewmodel")
+    id("eunmin.compose.navigation")
     id("eunmin.koin")
 }
 
