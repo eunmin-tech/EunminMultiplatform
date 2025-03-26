@@ -12,10 +12,8 @@ import io.eunmin.multiplatform.pokedex.data.pagingsource.PokemonSummaryPagingSou
 import io.eunmin.multiplatform.pokedex.domain.model.Pokemon
 import io.eunmin.multiplatform.pokedex.domain.model.PokemonSummary
 import io.eunmin.multiplatform.pokedex.domain.repository.PokemonRepository
-import io.github.aakira.napier.Napier
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
 
 internal class PokemonRepositoryImpl(
     private val remoteDataSource: PokemonRemoteDataSource

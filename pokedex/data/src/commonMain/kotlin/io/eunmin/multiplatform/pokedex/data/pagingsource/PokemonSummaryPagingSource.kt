@@ -2,7 +2,6 @@ package io.eunmin.multiplatform.pokedex.data.pagingsource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import io.eunmin.multiplatform.common.extensions.urlToId
 import io.eunmin.multiplatform.pokedex.data.datasource.PokemonRemoteDataSource
 import io.eunmin.multiplatform.pokedex.data.model.PokemonSummaryEntity
 import io.github.aakira.napier.Napier
