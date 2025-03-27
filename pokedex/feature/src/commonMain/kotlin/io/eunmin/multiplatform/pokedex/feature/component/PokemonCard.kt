@@ -1,8 +1,10 @@
 package io.eunmin.multiplatform.pokedex.feature.component
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
@@ -33,9 +35,9 @@ fun PokemonCard(
     }
 
     Card(
-        modifier = Modifier.fillMaxWidth().padding(8.dp),
+        modifier = Modifier.fillMaxWidth(),
         onClick = { onClick(pokemonSummary) },
-        colors = CardColors(
+        colors = CardDefaults.cardColors(
             containerColor = dominantColorState.color,
             contentColor = dominantColorState.onColor,
             disabledContainerColor = dominantColorState.color,
@@ -46,13 +48,17 @@ fun PokemonCard(
         AsyncImage(
             modifier = Modifier
                 .size(120.dp)
-                .align(Alignment.CenterHorizontally),
+                .align(Alignment.CenterHorizontally)
+                .padding(horizontal = 2.dp)
+                .padding(top = 2.dp),
             model = pokemonSummary.imageUrl,
             contentDescription = pokemonSummary.name,
         )
 
         Text(
-            modifier = Modifier.align(Alignment.CenterHorizontally),
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+                .padding(horizontal = 2.dp)
+                .padding(bottom = 2.dp),
             text = pokemonSummary.name,
         )
     }

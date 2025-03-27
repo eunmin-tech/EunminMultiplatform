@@ -79,7 +79,6 @@ fun PokemonListScreen(
                 items(
                     count = pokemonSummaries.itemCount,
                     key = pokemonSummaries.itemKey { it.name },
-                    span = { GridItemSpan(1) }
                 ) { index ->
                     val pokemonSummary = pokemonSummaries[index]!!
                     PokemonCard(
