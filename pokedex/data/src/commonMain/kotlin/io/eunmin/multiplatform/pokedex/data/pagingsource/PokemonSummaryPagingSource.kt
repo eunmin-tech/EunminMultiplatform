@@ -10,8 +10,9 @@ class PokemonSummaryPagingSource(
     private val pokemonRemoteDataSource: PokemonRemoteDataSource
 ): PagingSource<Int, PokemonSummaryEntity>() {
     override fun getRefreshKey(state: PagingState<Int, PokemonSummaryEntity>): Int? {
-        return state.anchorPosition?.let {
-            state.closestPageToPosition(it)?.prevKey
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
 
@@ -29,5 +30,4 @@ class PokemonSummaryPagingSource(
             LoadResult.Error(e)
         }
     }
-
 }

@@ -13,6 +13,7 @@ import io.eunmin.multiplatform.pokedex.domain.model.Pokemon
 import io.eunmin.multiplatform.pokedex.domain.model.PokemonSummary
 import io.eunmin.multiplatform.pokedex.domain.repository.PokemonRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.map
 
 internal class PokemonRepositoryImpl(

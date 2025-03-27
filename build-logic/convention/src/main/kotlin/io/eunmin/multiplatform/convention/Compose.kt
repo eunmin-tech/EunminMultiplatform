@@ -5,6 +5,7 @@ import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.compose.ComposeExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -35,6 +36,7 @@ internal fun Project.configureMultiplatformCompose() {
         sourceSets.androidMain.dependencies {
             implementation(compose.preview)
             implementation("androidx.window:window:1.3.0")
+            implementation(libs.findLibrary("androidx-activity-compose").get())
         }
 
         sourceSets.commonMain.dependencies {
@@ -48,11 +50,14 @@ internal fun Project.configureMultiplatformCompose() {
             implementation(libs.findBundle("coil").get())
             implementation(libs.findBundle("compose-adaptive").get())
             implementation(libs.findLibrary("palette").get())
-            implementation(libs.findLibrary("palette-base64").get())
             implementation(libs.findLibrary("palette-network").get())
             if (!name.contains("design")) {
                 implementation(project(":shared:design"))
             }
+        }
+
+        sourceSets["desktopMain"].dependencies {
+            implementation(compose.desktop.currentOs)
         }
     }
 

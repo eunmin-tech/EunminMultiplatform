@@ -1,12 +1,5 @@
 package io.eunmin.multiplatform.pokedex.composeApp.platform
 
-import android.app.Application
-import io.github.aakira.napier.DebugAntilog
-import io.github.aakira.napier.Napier
+import io.eunmin.multiplatform.base.app.application.EunminApplication
 
-class PokedexApplication: Application() {
-    override fun onCreate() {
-        super.onCreate()
-        Napier.base(DebugAntilog())
-    }
-}
+class PokedexApplication: EunminApplication()

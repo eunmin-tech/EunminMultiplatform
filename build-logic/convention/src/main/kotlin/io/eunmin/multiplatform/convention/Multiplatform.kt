@@ -6,6 +6,7 @@ import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.get
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 internal fun Project.configureMultiplatformApplication() {
@@ -33,6 +34,8 @@ internal fun Project.configureMultiplatformApplication() {
             }
         }
 
+        jvm("desktop")
+
         configureMultiplatformKotlin(this)
     }
 }
@@ -53,6 +56,8 @@ internal fun Project.configureMultiplatformLibrary() {
         iosX64()
         iosArm64()
         iosSimulatorArm64()
+
+        jvm("desktop")
 
         configureMultiplatformKotlin(this)
     }
@@ -81,10 +86,23 @@ private fun Project.configureMultiplatformKotlin(
             implementation(libs.findLibrary("kotlin-serialization-json").get())
 
             if (!name.contains("common")) {
-                sourceSets.commonMain.dependencies {
-                    implementation(project(":common"))
+                implementation(project(":common"))
+            }
+
+            if (!path.contains("base")) {
+                if (name == "data") {
+                    implementation(project(":base:data"))
+                }
+                if (name == "feature") {
+                    implementation(project(":base:feature"))
+                }
+                if (name.contains("app", true)) {
+                    implementation(project(":base:app"))
                 }
             }
+        }
+        get("desktopMain").dependencies {
+            implementation(libs.findLibrary("kotlin-coroutines-swing").get())
         }
     }
 }

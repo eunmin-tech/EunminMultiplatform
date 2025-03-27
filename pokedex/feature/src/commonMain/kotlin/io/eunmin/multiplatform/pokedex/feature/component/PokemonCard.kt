@@ -12,19 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.LocalLifecycleOwner
-import androidx.lifecycle.lifecycleScope
 import coil3.compose.AsyncImage
 import com.kmpalette.extensions.network.rememberNetworkDominantColorState
-import com.kmpalette.loader.ImageBitmapLoader
-import com.kmpalette.rememberPainterDominantColorState
 import io.eunmin.multiplatform.pokedex.feature.model.PokemonSummaryModel
-import io.github.aakira.napier.Napier
 import io.ktor.http.Url
-import kotlinx.coroutines.launch
 
 @Composable
 fun PokemonCard(
@@ -39,8 +31,6 @@ fun PokemonCard(
     LaunchedEffect(pokemonSummary.imageUrl) {
         dominantColorState.updateFrom(Url(pokemonSummary.imageUrl))
     }
-
-    Napier.v { "${pokemonSummary.name} ${dominantColorState.result.toString()}" }
 
     Card(
         modifier = Modifier.fillMaxWidth().padding(8.dp),

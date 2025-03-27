@@ -1,4 +1,4 @@
-rootProject.name = "Eunmin"
+rootProject.name = "EunminMultiplatform"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -31,7 +31,7 @@ dependencyResolutionManagement {
 
 include(
     ":common",
-    ":base:feature", ":base:data",
+    ":base:app", ":base:feature", ":base:data",
 
     ":shared:design", ":shared:data-resource",
 

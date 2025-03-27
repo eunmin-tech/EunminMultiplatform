@@ -2,6 +2,7 @@ import io.eunmin.multiplatform.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.get
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 class KtorConvention: Plugin<Project> {
@@ -22,6 +23,10 @@ class KtorConvention: Plugin<Project> {
 
                     iosMain.dependencies {
                         implementation(libs.findLibrary("ktor-client-darwin").get())
+                    }
+
+                    get("desktopMain")?.dependencies {
+                        implementation(libs.findLibrary("ktor-client-okhttp").get())
                     }
                 }
             }

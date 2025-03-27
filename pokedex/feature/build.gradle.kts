@@ -7,7 +7,6 @@ plugins {
 
 kotlin {
     sourceSets.commonMain.dependencies {
-        implementation(projects.base.feature)
         implementation(projects.pokedex.domain)
         implementation(libs.paging.compose.common)
     }

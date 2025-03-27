@@ -2,7 +2,7 @@
 kotlin = "2.1.10"
 coroutines = "1.10.1"
 serialization = "1.8.0"
-datetime = "0.6.1"
+datetime = "0.6.2"
 ksp = "2.1.10-1.0.29"
 
 agp = "8.5.2"
@@ -28,13 +28,14 @@ palette = "3.1.0"
 napier = "2.7.1"
 ktor = "3.0.3"
 koin = "4.0.2"
-room = "2.7.0-rc02"
-sqlite = "2.5.0-rc02"
+room = "2.7.0-rc03"
+sqlite = "2.5.0-rc03"
 paging = "3.3.0-alpha02-0.5.1"
 
 [libraries]
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+kotlin-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "coroutines" }
 kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
 
@@ -53,6 +54,7 @@ compose-navigation = { module = "org.jetbrains.androidx.navigation:navigation-co
 compose-material3-adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "compose-adaptive" }
 compose-material3-adaptive-layout = { module = "org.jetbrains.compose.material3.adaptive:adaptive-layout", version.ref = "compose-adaptive" }
 compose-material3-adaptive-navigation = { module = "org.jetbrains.compose.material3.adaptive:adaptive-navigation", version.ref = "compose-adaptive" }
+compose-material3-window-size = { module = "org.jetbrains.compose.material3:material3-window-size-class", version.ref = "compose-multiplatform" }
 
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
@@ -102,5 +104,5 @@ room = { id = "androidx.room", version.ref = "room" }
 
 [bundles]
 kotlin = ["kotlin-coroutines-android", "kotlin-serialization-json", "kotlin-datetime"]
-compose-adaptive = ["compose-material3-adaptive", "compose-material3-adaptive-layout", "compose-material3-adaptive-navigation"]
+compose-adaptive = ["compose-material3-adaptive", "compose-material3-adaptive-layout", "compose-material3-adaptive-navigation", "compose-material3-window-size"]
 coil = ["coil-compose", "coil-ktor3"]
