@@ -8,19 +8,16 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.kmpalette.extensions.network.rememberNetworkDominantColorState
-import com.kmpalette.rememberPainterDominantColorState
-import io.eunmin.multiplatform.common.constants.EunminConstants
-import io.eunmin.multiplatform.common.enums.DeviceType
+import coil3.compose.LocalPlatformContext
+import coil3.request.ImageRequest
+import com.kmpalette.rememberDominantColorState
+import io.eunmin.multiplatform.design.extensions.asImageBitmap
 import io.eunmin.multiplatform.pokedex.feature.model.PokemonSummaryModel
-import io.github.aakira.napier.Napier
-import io.ktor.http.Url
 import kotlinx.coroutines.launch
 
 @Composable
@@ -30,30 +27,10 @@ fun PokemonCard(
 ) {
     val coroutineScope = rememberCoroutineScope()
 
-    val networkColorState = rememberNetworkDominantColorState(
+    val dominantColorState = rememberDominantColorState(
         defaultColor = MaterialTheme.colorScheme.surfaceVariant,
         defaultOnColor = MaterialTheme.colorScheme.onSurfaceVariant
     )
-
-    val painterColorState = rememberPainterDominantColorState(
-        defaultColor = MaterialTheme.colorScheme.surfaceVariant,
-        defaultOnColor = MaterialTheme.colorScheme.onSurfaceVariant
-    )
-
-
-    LaunchedEffect(pokemonSummary.imageUrl) {
-        if (EunminConstants.deviceType == DeviceType.ANDROID) {
-            networkColorState.updateFrom(Url(pokemonSummary.imageUrl))
-        }
-    }
-
-    val dominantColorState = if (EunminConstants.deviceType == DeviceType.ANDROID) {
-        networkColorState
-    } else {
-        painterColorState
-    }
-
-    Napier.v { "${pokemonSummary.name} : ${dominantColorState.result?.paletteOrNull?.swatches.toString()}" }
 
     ElevatedCard(
         modifier = Modifier.fillMaxWidth().aspectRatio(1f).padding(2.dp),
@@ -65,19 +42,22 @@ fun PokemonCard(
             disabledContentColor = dominantColorState.onColor,
         ),
     ) {
+        val platformContext = LocalPlatformContext.current
         AsyncImage(
             modifier = Modifier
                 .weight(1f)
                 .align(Alignment.CenterHorizontally),
-            model = pokemonSummary.imageUrl,
-            contentDescription = pokemonSummary.name,
-            onSuccess = {
-                if (EunminConstants.deviceType != DeviceType.ANDROID) {
-                    coroutineScope.launch {
-                        painterColorState.updateFrom(it.painter)
+            model = ImageRequest.Builder(platformContext)
+                .data(pokemonSummary.imageUrl)
+                .listener(
+                    onSuccess = { _, result ->
+                        coroutineScope.launch {
+                            dominantColorState.updateFrom(result.image.asImageBitmap())
+                        }
                     }
-                }
-            }
+                )
+                .build(),
+            contentDescription = pokemonSummary.name
         )
 
         Text(
