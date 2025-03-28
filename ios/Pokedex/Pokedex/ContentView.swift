@@ -10,7 +10,7 @@ import PokedexComposeApp
 
 struct ComposeView: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        MainViewControllerKt.MainViewController()
+        PokedexViewControllerKt.PokedexViewController()
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}

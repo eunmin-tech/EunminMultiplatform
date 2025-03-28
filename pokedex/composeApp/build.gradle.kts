@@ -36,7 +36,7 @@ kotlin {
 
 compose.desktop {
     application {
-        mainClass = "io.eunmin.multiplatform.pokedex.composeApp.MainKt"
+        mainClass = "io.eunmin.multiplatform.pokedex.composeApp.PokedexMainKt"
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
