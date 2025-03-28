@@ -60,8 +60,6 @@ coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" 
 coil-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
 
 palette = { module = "com.kmpalette:kmpalette-core", version.ref = "palette" }
-palette-base64 = { module = "com.kmpalette:extensions-base64", version.ref = "palette" }
-palette-network = { module = "com.kmpalette:extensions-network", version.ref = "palette" }
 
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 

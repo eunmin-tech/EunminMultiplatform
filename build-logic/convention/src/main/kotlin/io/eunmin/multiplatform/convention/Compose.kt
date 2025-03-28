@@ -46,13 +46,15 @@ internal fun Project.configureMultiplatformCompose() {
             implementation(compose.materialIconsExtended)
             implementation(compose.material3AdaptiveNavigationSuite)
             implementation(compose.foundation)
+
             implementation(compose.animationGraphics)
             implementation(libs.findBundle("coil").get())
             implementation(libs.findBundle("compose-adaptive").get())
-            implementation(libs.findLibrary("palette").get())
-            implementation(libs.findLibrary("palette-network").get())
             if (!name.contains("design")) {
                 implementation(project(":shared:design"))
+            }
+            if (!path.contains("library")) {
+                implementation(project(":library:palette"))
             }
         }
 

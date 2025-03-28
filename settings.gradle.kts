@@ -32,6 +32,7 @@ dependencyResolutionManagement {
 include(
     ":common",
     ":base:app", ":base:feature", ":base:data",
+    ":library:palette",
 
     ":shared:design", ":shared:data-resource",
 
